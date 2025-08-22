@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Calculator</title>
+    <style>
+        #calculadora {
+            width: 250px;
+            margin: 50px auto;
+            padding: 35px;
+            border: 3px solid #9f4ca1;
+            border-radius: 10px;
+            text-align: center;
+            background-color: #f0f0f0;
+        }
+        #screen {
+            width: 100%;
+            height: 40px;
+            margin-bottom: 10px;
+            border: 3px solid #9f4ca1;
+            border-radius: 5px;
+            background-color: #7cf7e0;
+            font-size: 24px;
+            line-height: 40px;
+            text-align: right;
+            padding-right: 10px;
+        }
+        button {
+            width: 40px;
+            height: 40px;
+            margin: 5px;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .numeros {
+            background-color: #d4d4d4;
+        }
+        .operadores {
+            background-color: #9f4ca1;
+            color: #fff;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="calculadora">
+        <h1>CASIO<h1>
+        <div id="screen"></div>
+        <button class="numeros">1</button>
+        <button class="numeros">2</button>    
+        <button class="numeros">3</button>
+        <button class="numeros">4</button>
+        <button class="numeros">5</button>
+        <button class="numeros">6</button>
+        <button class="numeros">7</button>
+        <button class="numeros">8</button>
+        <button class="numeros">9</button>
+        <button class="numeros">0</button>
+        
+        <button class="operadores">+</button>
+        <button class="operadores">.</button>
+        <button class="operadores">-</button>
+        <button class="operadores">%</button>
+        <button class="operadores">*</button>
+        <button class="operadores">=</button>
+        <button class="operadores">CE</button>
+
+
+
+    </div>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const screen = document.getElementById('screen');
+        const buttons = document.querySelectorAll('button');
+        let currentInput = '';
+
+        buttons.forEach(button => {
+            button.addEventListener('click', function() {
+                const value = this.textContent;
+
+                if (value === 'CE') {
+                    currentInput = '';
+                    screen.textContent = '';
+                } else if (value === '=') {
+                    try {
+                        currentInput = eval(currentInput).toString();
+                        screen.textContent = currentInput;
+                    } catch {
+                        screen.textContent = 'Error';
+                        currentInput = '';
+                    }
+                } else {
+                    currentInput += value;
+                    screen.textContent = currentInput;
+                }
+            });
+        });
+    });
+
+</script>    
+</body>
+</html>
